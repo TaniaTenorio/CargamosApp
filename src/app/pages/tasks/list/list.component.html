@@ -1,1 +1,24 @@
-<p>list works!</p>
+<div class="table responsive">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Tarea</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Tiempo Restante</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-light" *ngFor="let item of [0,1,2,3,4,5]">
+            <th scope="row">Tarea</th>
+            <td>Descripción de tarea</td>
+            <td>12:00</td>
+            <td class="btn-group d-none d-sm-block" role="group">
+                <button type="button" class="btn btn-outline-warning m-1" (click)="onGoToEdit(item)" >Editar</button>
+                <button type="button" class="btn btn-outline-warning m-1" (click)="onGoToDetails(item)">Detalles</button>
+                <button type="button" class="btn btn-outline-danger m-1" (click)="onDelete(item)">Borrar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
