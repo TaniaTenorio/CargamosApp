@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TasksService } from 'src/app/pages/tasks/tasks.service';
 import { Task } from '../../models/task.interface';
 
 @Component({
@@ -13,7 +14,7 @@ export class TaskFormComponent implements OnInit {
   task: Task;
   taskForm: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(private router: Router, private fb: FormBuilder, private tasksSvc: TasksService) {
     const navigation = this.router.getCurrentNavigation();
     this.task = navigation?.extras?.state?.value;
     this.initForm();
@@ -29,6 +30,11 @@ export class TaskFormComponent implements OnInit {
 
   onSave(): void{
     console.log('Saved', this.taskForm.value)
+    if (this.taskForm.valid) {
+      const task = this.taskForm.value;
+      const taskId = this.task?.id || null;
+      this.tasksSvc.onSaveTask(task, taskId);
+    }
   }
 
   onGoBackToList(): void{
