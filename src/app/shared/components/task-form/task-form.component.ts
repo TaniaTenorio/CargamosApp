@@ -34,6 +34,7 @@ export class TaskFormComponent implements OnInit {
       const task = this.taskForm.value;
       const taskId = this.task?.id || null;
       this.tasksSvc.onSaveTask(task, taskId);
+      this.taskForm.reset();
     }
   }
 

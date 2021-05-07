@@ -9,7 +9,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-light" *ngFor="let item of mockData ">
+          <tr class="table-light" *ngFor="let item of tasks$ | async ">
             <th scope="row">{{item.name}}</th>
             <td>{{item.description}}</td>
             <td>{{item.duration}}</td>
