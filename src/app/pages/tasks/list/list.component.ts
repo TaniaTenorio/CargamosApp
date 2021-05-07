@@ -30,8 +30,14 @@ export class ListComponent implements OnInit {
     this.navigationExtras.state.value = item;
     this.router.navigate(['details'], this.navigationExtras)
   }
-  onDelete(item: any): void{
-    alert('Deleted')
+
+  async onDelete(taskId: string): Promise<void>{
+    try {
+      await this.tasksSvc.onDeleteTask(taskId)
+      alert('Deleted')
+    } catch(err) {
+      console.log(err); 
+    }
   }
 
 }
