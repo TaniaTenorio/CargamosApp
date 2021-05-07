@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { NewRoutingModule } from './new-routing.module';
 import { NewComponent } from './new.component';
+import { TaskFormModule } from 'src/app/shared/components/task-form/task-form.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { NewComponent } from './new.component';
   ],
   imports: [
     CommonModule,
-    NewRoutingModule
+    NewRoutingModule,
+    TaskFormModule
   ]
 })
 export class NewModule { }
