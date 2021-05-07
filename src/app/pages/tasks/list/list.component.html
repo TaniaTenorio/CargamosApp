@@ -9,10 +9,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-light" *ngFor="let item of [0,1,2,3,4,5]">
-            <th scope="row">Tarea</th>
-            <td>Descripción de tarea</td>
-            <td>12:00</td>
+          <tr class="table-light" *ngFor="let item of mockData ">
+            <th scope="row">{{item.name}}</th>
+            <td>{{item.description}}</td>
+            <td>{{item.duration}}</td>
             <td class="btn-group d-none d-sm-block" role="group">
                 <button type="button" class="btn btn-outline-warning m-1" (click)="onGoToEdit(item)" >Editar</button>
                 <button type="button" class="btn btn-outline-warning m-1" (click)="onGoToDetails(item)">Detalles</button>
