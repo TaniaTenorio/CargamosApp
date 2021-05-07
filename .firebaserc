@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "cargamos-app": {
+      "hosting": {
+        "CargamosApp": [
+          "cargamos-app"
+        ]
+      }
+    }
+  }
+}
