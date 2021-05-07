@@ -42,6 +42,17 @@ export class TaskFormComponent implements OnInit {
     this.router.navigate(['list']);
   }
 
+  isValidField(field: string):string {
+    const validatedField = this.taskForm.get(field);
+      if (!validatedField.valid && validatedField.touched) {
+        return 'is-invalid';
+      } else if (validatedField.touched) {
+        return 'is-valid';
+      } else {
+        return '';
+      } 
+  }
+
   private initForm(): void {
     this.taskForm = this.fb.group({
       name: ['', [Validators.required]],
