@@ -3,15 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { ListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
+import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
+import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    FilterPipe,
+    SortPipe
   ],
   imports: [
     CommonModule,
-    ListRoutingModule
+    ListRoutingModule,
+    FormsModule
   ]
 })
 export class ListModule { }
