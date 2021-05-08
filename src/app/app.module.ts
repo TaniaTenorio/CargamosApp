@@ -8,6 +8,7 @@ import { HeaderModule } from './shared/components/header/header.module';
 import { TaskFormModule } from './shared/components/task-form/task-form.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     HeaderModule,
     TaskFormModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuth
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
