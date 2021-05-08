@@ -43,7 +43,6 @@ export class ListComponent implements OnInit {
   async onDelete(taskId: string): Promise<void>{
     try {
       await this.tasksSvc.onDeleteTask(taskId)
-      alert('Deleted')
     } catch(err) {
       console.log(err); 
     }

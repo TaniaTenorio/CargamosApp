@@ -15,7 +15,7 @@ export class HistoryComponent implements OnInit {
 
   navigationExtras: NavigationExtras = {
     state: {
-      task: null
+      value: null
     }
   }
 
@@ -26,7 +26,7 @@ export class HistoryComponent implements OnInit {
   }
 
   onGoToDetails(item: any): void{
-    this.navigationExtras.state.task = item;
+    this.navigationExtras.state.value = item;
     this.router.navigate(['details'], this.navigationExtras);
   }
 

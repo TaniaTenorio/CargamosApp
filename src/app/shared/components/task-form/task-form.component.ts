@@ -13,11 +13,25 @@ export class TaskFormComponent implements OnInit {
 
   task: Task;
   taskForm: FormGroup;
+  duration;
+
+  private timeLimit = 120;
 
   constructor(private router: Router, private fb: FormBuilder, private tasksSvc: TasksService) {
     const navigation = this.router.getCurrentNavigation();
     this.task = navigation?.extras?.state?.value;
     this.initForm();
+  }
+
+  setTaskDuration(): void {
+    let timeToDeliver = this.taskForm.value.timeToDeliver
+    if(timeToDeliver > 0 && timeToDeliver < 31) {
+      this.duration = 'corta';
+    } else if(timeToDeliver > 30 && timeToDeliver < 61) {
+      this.duration = 'media';
+    } else  if(timeToDeliver > 60 ){
+      this.duration = 'larga';
+    }
   }
 
   ngOnInit(): void {
@@ -29,9 +43,10 @@ export class TaskFormComponent implements OnInit {
   }
 
   onSave(): void{
-    console.log('Saved', this.taskForm.value)
+    this.setTaskDuration()
+    
     if (this.taskForm.valid) {
-      const task = {completed:false, open: false, ...this.taskForm.value};
+      const task = {completed:false, open: false, duration: this.duration, ...this.taskForm.value};
       const taskId = this.task?.id || null;
       this.tasksSvc.onSaveTask(task, taskId);
       this.taskForm.reset();
@@ -42,11 +57,11 @@ export class TaskFormComponent implements OnInit {
     this.router.navigate(['list']);
   }
 
-  isValidField(field: string):string {
+  isValidField(field: any):string {
     const validatedField = this.taskForm.get(field);
-      if (!validatedField.valid && validatedField.touched) {
+      if (!validatedField?.valid && validatedField?.touched) {
         return 'is-invalid';
-      } else if (validatedField.touched) {
+      } else if (validatedField?.touched) {
         return 'is-valid';
       } else {
         return '';
@@ -57,7 +72,7 @@ export class TaskFormComponent implements OnInit {
     this.taskForm = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      duration: ['', [Validators.required]]
+      timeToDeliver: ['', [Validators.required, Validators.max(120)]]
     })
   }
 
