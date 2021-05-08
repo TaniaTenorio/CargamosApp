@@ -1,6 +1,7 @@
 export interface Task {
     id?: string,
-    name: 'string',
-    description: 'string',
-    duration: 'string'
+    name: string,
+    description: string,
+    duration: string,
+    completed: boolean,
 }

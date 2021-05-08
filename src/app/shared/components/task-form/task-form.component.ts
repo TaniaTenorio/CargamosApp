@@ -31,7 +31,7 @@ export class TaskFormComponent implements OnInit {
   onSave(): void{
     console.log('Saved', this.taskForm.value)
     if (this.taskForm.valid) {
-      const task = this.taskForm.value;
+      const task = {completed:false, ...this.taskForm.value};
       const taskId = this.task?.id || null;
       this.tasksSvc.onSaveTask(task, taskId);
       this.taskForm.reset();

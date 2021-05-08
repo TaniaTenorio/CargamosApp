@@ -47,8 +47,15 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  onStart(): void{
+    alert('Starting')
+  }
+
+
   onFinish(): void{
     alert('Finished')
+    this.task['completed'] = true;
+    this.tasksSvc.onSaveTask(this.task, this.task.id )
   }
 
 }
