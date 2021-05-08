@@ -49,6 +49,8 @@ export class DetailsComponent implements OnInit {
 
   onStart(): void{
     alert('Starting')
+    this.task['open'] = true;
+    this.tasksSvc.onSaveTask(this.task, this.task.id);
   }
 
 
