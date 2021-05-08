@@ -11,12 +11,14 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
+  private isEmail = /\S+@\S+\.\S+/;
 
   constructor(private authSvc: AuthService, private fb: FormBuilder, private router: Router) {
-    this.initForm()
+    
   }
 
   ngOnInit(): void {
+    this.initForm()
   }
 
   async onRegister() {
@@ -31,10 +33,16 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  isValidField(field: string):string {
+    const validatedField = this.registerForm.get(field);
+    return( !validatedField?.valid && validatedField?.touched)
+    ? 'is-invalid' : validatedField?.touched ? 'is-valid' : '';
+  }
+
   private initForm():void {
     this.registerForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 

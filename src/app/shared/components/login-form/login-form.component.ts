@@ -24,13 +24,14 @@ export class LoginFormComponent implements OnInit {
     const { email, password } = this.loginForms.value;
     try {
       const user = this.authSvc.login(email, password)
-      if(user) {
-        this.router.navigate(['/home'])
-      }
+      // if(user) {
+      //   this.router.navigate(['/home'])
+      // }
     } catch(err) {
       console.log(err);
-    }
+    }   
   }
+  
 
   private initForm():void {
     this.loginForms = this.fb.group({

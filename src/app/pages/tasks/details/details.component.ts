@@ -23,9 +23,9 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (typeof this.task === 'undefined') {
-      this.router.navigate(['list']);
-    }
+    // if (typeof this.task === 'undefined') {
+    //   this.router.navigate(['list']);
+    // }
   }
 
   onGoToEdit(): void{
