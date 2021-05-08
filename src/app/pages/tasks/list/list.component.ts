@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { TasksService } from '../tasks.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -11,6 +12,7 @@ export class ListComponent implements OnInit {
 
   // use observable created in tasks service
   tasks$ = this.tasksSvc.tasks;
+  pendingTasks
 
   navigationExtras: NavigationExtras = {
     state: {
@@ -20,6 +22,9 @@ export class ListComponent implements OnInit {
   constructor(private router: Router, private tasksSvc: TasksService) { }
 
   ngOnInit(): void {
+    this.getPendingTasks()
+    console.log(this.pendingTasks);
+    
   }
 
   onGoToEdit(item: any): void{
@@ -38,6 +43,12 @@ export class ListComponent implements OnInit {
     } catch(err) {
       console.log(err); 
     }
+  }
+
+  getPendingTasks() {
+    this.pendingTasks = this.tasks$.pipe(
+      map(tasks => tasks.filter(task => task.completed === false))
+    )
   }
 
 }
