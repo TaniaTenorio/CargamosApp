@@ -8,10 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/']">
-              Inicio
-              <span class="visually-hidden">(current)</span>
-            </a>
+            <a class="nav-link active" [routerLink]="['/']">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/list']">Tareas Pendientes</a>
@@ -24,6 +21,17 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/productivity']">Productividad</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/login']">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/register']">Crear cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
