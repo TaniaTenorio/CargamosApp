@@ -6,7 +6,7 @@
       </button>
   
       <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav mx-auto">
           <li class="nav-item">
             <a class="nav-link active" [routerLink]="['/']">Inicio</a>
           </li>
@@ -23,17 +23,26 @@
             <a class="nav-link" [routerLink]="['/productivity']">Productividad</a>
           </li>
         </ul>
-        <ul class="navbar-nav me-auto">
+
+        <ul class="navbar-nav mx-auto" *ngIf="user$ | async as user; else login">
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/login']">Iniciar Sesión</a>
+            <a class="nav-link active">{{user?.email}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/register']">Crear cuenta</a>
+            <a class="nav-link" (click)="onLogout()">Cerrar Sesión</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Cerrar Sesión</a>
-          </li>
+          
         </ul>
+        <ng-template #login>
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" [routerLink]="['/login']">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/register']">Crear cuenta</a>
+            </li>
+          </ul>
+        </ng-template>
       </div>
     </div>
   </nav>

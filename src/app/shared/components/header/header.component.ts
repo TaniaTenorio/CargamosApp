@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public user$: Observable<any> = this.authSvc.afAuth.user;
+
+  constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  async onLogout() {
+    try {
+      await this.authSvc.logout();
+      this.router.navigate(['/login'])
+    } catch(err) {
+      console.log(err);
+    }
   }
 
 }
