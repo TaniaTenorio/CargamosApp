@@ -11,16 +11,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { LoginFormModule } from './shared/components/login-form/login-form.module';
-import { LoginFormComponent } from './shared/components/login-form/login-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimerComponent } from './shared/components/timer/timer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    //TimerComponent,
-    // LoginFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +26,7 @@ import { TimerComponent } from './shared/components/timer/timer.component';
     TaskFormModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    FormsModule,
     ReactiveFormsModule,
     LoginFormModule
   ],
