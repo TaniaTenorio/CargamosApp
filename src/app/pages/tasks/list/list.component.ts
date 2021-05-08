@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { TasksService } from '../tasks.service';
 import { map } from 'rxjs/operators';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -12,14 +13,17 @@ export class ListComponent implements OnInit {
 
   // use observable created in tasks service
   tasks$ = this.tasksSvc.tasks;
-  pendingTasks
+  pendingTasks;
+  taskDuration: any = ['corta', 'media', 'larga'];
+  filterValue = '';
 
   navigationExtras: NavigationExtras = {
     state: {
       value: null
+
     }
   }
-  constructor(private router: Router, private tasksSvc: TasksService) { }
+  constructor(private router: Router, private tasksSvc: TasksService, public fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getPendingTasks()
@@ -49,6 +53,22 @@ export class ListComponent implements OnInit {
     this.pendingTasks = this.tasks$.pipe(
       map(tasks => tasks.filter(task => task.completed === false))
     )
+  }
+
+  listForm = this.fb.group({
+    duration: ['']
+  })
+
+  changeDuration(e) {
+    this.listForm.get('duration').setValue(e.target.value, {
+      onlySelf: true
+    })
+    this.filterValue = this.listForm.value.duration
+    console.log(this.filterValue);
+  }
+
+  cleanFilter(): void {
+    this.filterValue = '';
   }
 
 }

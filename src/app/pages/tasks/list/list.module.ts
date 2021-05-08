@@ -5,7 +5,7 @@ import { ListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
 import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ListRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ListModule { }

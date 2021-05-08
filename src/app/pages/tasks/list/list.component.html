@@ -1,10 +1,15 @@
 
 <h2 class="text-center mt-4">Tareas Pendientes</h2>
-<div class="form-group">
-  <label class="col-form-label mt-4" for="inputDefault">Filtrar:</label>
-  <input type="text" class="form-control" placeholder="Default input" id="inputDefault" [(ngModel)]='duration'>
-</div>
-<div class="container mt-3" *ngFor="let item of pendingTasks | async | filter:duration:'duration' | sort:['open']">
+<form [formGroup]="listForm" >
+  <label>Filtrar por duración: </label>
+  <select formControlName="duration" (change)="changeDuration($event)">
+    <option disabled>Select duration</option>
+    <option> </option>
+    <option *ngFor="let option of taskDuration">{{option}}</option>
+  </select>
+  <button type="button" class="btn btn-secondary btn-small" (click)="cleanFilter()">Clear</button>
+</form>
+<div class="container mt-3" *ngFor="let item of pendingTasks | async | filter:filterValue:'duration' | sort:['open']">
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">{{item.name}}</h4>
