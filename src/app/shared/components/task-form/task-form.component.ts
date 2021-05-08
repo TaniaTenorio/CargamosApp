@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TasksService } from 'src/app/pages/tasks/tasks.service';
 import { Task } from '../../models/task.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-task-form',
@@ -14,8 +15,6 @@ export class TaskFormComponent implements OnInit {
   task: Task;
   taskForm: FormGroup;
   duration;
-
-  private timeLimit = 120;
 
   constructor(private router: Router, private fb: FormBuilder, private tasksSvc: TasksService) {
     const navigation = this.router.getCurrentNavigation();
@@ -42,14 +41,20 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-  onSave(): void{
+  async onSave(): Promise<void>{
     this.setTaskDuration()
-    
     if (this.taskForm.valid) {
-      const task = {completed:false, open: false, duration: this.duration, ...this.taskForm.value};
-      const taskId = this.task?.id || null;
-      this.tasksSvc.onSaveTask(task, taskId);
-      this.taskForm.reset();
+      try {
+        const task = {completed:false, open: false, duration: this.duration, ...this.taskForm.value};
+        const taskId = this.task?.id || null;
+        await this.tasksSvc.onSaveTask(task, taskId);
+        Swal.fire('Tarea guardada', 'Tu tarea ha sido creada con éxito', 'success')
+        this.taskForm.reset();
+      } catch(err) {
+        console.log(err);
+      } 
+    } else {
+      Swal.fire('¡Ups! Hubo un error', 'Revisa la información registrada en inténtalo nuevamente', 'error')
     }
   }
 
