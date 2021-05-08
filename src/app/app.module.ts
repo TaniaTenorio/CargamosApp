@@ -10,11 +10,15 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
+import { LoginFormModule } from './shared/components/login-form/login-form.module';
+import { LoginFormComponent } from './shared/components/login-form/login-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    // LoginFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +26,9 @@ import { environment } from 'src/environments/environment';
     HeaderModule,
     TaskFormModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule,
+    LoginFormModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
