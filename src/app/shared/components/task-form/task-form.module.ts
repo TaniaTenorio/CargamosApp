@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskFormComponent } from './task-form.component';
+import { TaskGuard } from 'src/app/shared/guards/task.guard';
 
 @NgModule({
   declarations: [TaskFormComponent],
@@ -9,6 +10,7 @@ import { TaskFormComponent } from './task-form.component';
     CommonModule,
     ReactiveFormsModule
   ],
-  exports: [TaskFormComponent]
+  exports: [TaskFormComponent],
+  providers: [TaskGuard]
 })
 export class TaskFormModule { }
