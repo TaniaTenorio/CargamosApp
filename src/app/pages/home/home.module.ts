@@ -9,7 +9,7 @@ import { TimerComponent } from 'src/app/shared/components/timer/timer.component'
 @NgModule({
   declarations: [
     HomeComponent,
-    TimerComponent
+    //TimerComponent
   ],
   imports: [
     CommonModule,

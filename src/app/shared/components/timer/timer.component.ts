@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, interval, Observable } from 'rxjs';
 
 @Component({
@@ -7,14 +7,15 @@ import { Subscription, interval, Observable } from 'rxjs';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit, OnDestroy {
+  @Input() taskDuration: number
 
   private subscription: Subscription;
   
-    taskDuration = 20;
+    //taskDuration = 20;
     dateNow = new Date();
     //add task duration to current time
-    dTime = this.dateNow.setMinutes(this.dateNow.getMinutes() + this.taskDuration);
-
+    dTime;
+    
     milliSecondsInASecond = 1000;
     hoursInADay = 24;
     minutesInAnHour = 60;
@@ -35,6 +36,8 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
     ngOnInit() {
+      this.dTime = this.dateNow.setMinutes(this.dateNow.getMinutes() + this.taskDuration);
+
        this.subscription = interval(1000)
            .subscribe(x => { this.getTimeDifference(); });
     }

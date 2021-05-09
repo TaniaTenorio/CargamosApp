@@ -6,13 +6,15 @@ import { ListComponent } from './list.component';
 import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TimerComponent } from 'src/app/shared/components/timer/timer.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
     FilterPipe,
-    SortPipe
+    SortPipe,
+    TimerComponent,
   ],
   imports: [
     CommonModule,
