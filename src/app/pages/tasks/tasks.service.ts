@@ -32,7 +32,18 @@ export class TasksService {
     return new Promise(async(resolve, reject) => {
       try {
         const id = taskId || this.afs.createId();
-        const data = {id, ...task};
+        const creationDate = new Date().toLocaleString();
+        const finishDate = task.finishDate || '';
+        const completed = task.completed || false;
+        const open = task.open || false;
+        const data = {
+          id,
+          creationDate,
+          finishDate,
+          completed,
+          open,
+          ...task
+        };
         const result = await this.tasksCollection.doc(id).set(data);
         resolve(result);
       } catch(err) {

@@ -45,10 +45,10 @@ export class TaskFormComponent implements OnInit {
     this.setTaskDuration()
     if (this.taskForm.valid) {
       try {
-        const task = {completed:false, open: false, duration: this.duration, ...this.taskForm.value};
+        const task = { duration: this.duration, ...this.taskForm.value};
         const taskId = this.task?.id || null;
         await this.tasksSvc.onSaveTask(task, taskId);
-        Swal.fire('Tarea guardada', 'Tu tarea ha sido creada con éxito', 'success')
+        Swal.fire('Tarea guardada', 'Tu tarea ha sido guardada con éxito', 'success')
         this.taskForm.reset();
       } catch(err) {
         console.log(err);
