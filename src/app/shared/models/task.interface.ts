@@ -6,4 +6,7 @@ export interface Task {
     duration: string,
     completed: boolean,
     open: boolean,
+    creationDate: string,
+    finishDate: string,
+
 }

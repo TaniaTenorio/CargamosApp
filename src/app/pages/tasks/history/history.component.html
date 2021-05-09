@@ -5,6 +5,7 @@
       <h4 class="card-title">{{item.name}}</h4>
       <p class="card-text">{{item.description}}</p>
       <p class="card-text">{{item.timeToDeliver}}</p>
+      <p class="card-text">Fecha de finalización: {{item.finishDate | date:'medium'}}</p>
       <div class="btn-group d-none d-sm-block" role="group">
         <button type="button" class="btn btn-primary m-1 btn-sm" (click)="onGoToDetails(item)">Detalles</button>
        </div>

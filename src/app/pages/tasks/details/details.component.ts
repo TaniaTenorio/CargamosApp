@@ -57,7 +57,8 @@ export class DetailsComponent implements OnInit {
   onFinish(): void{
     alert('Finished')
     this.task['completed'] = true;
-    this.tasksSvc.onSaveTask(this.task, this.task.id )
+    this.task.finishDate = new Date().toLocaleString();
+    this.tasksSvc.onSaveTask(this.task, this.task.id );
   }
 
 }

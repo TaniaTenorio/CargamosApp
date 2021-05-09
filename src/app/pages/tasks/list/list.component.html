@@ -11,10 +11,12 @@
 </form>
 <div class="container mt-3" *ngFor="let item of pendingTasks | async | filter:filterValue:'duration' | sort:['open']">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body" [ngClass]="{'bg-success': item.open}">
       <h4 class="card-title">{{item.name}}</h4>
       <p class="card-text">{{item.description}}</p>
-      <p class="card-text">{{item.timeToDeliver}}</p>
+      <p class="card-text">Creada en: {{item.creationDate | date:'medium'}}</p>
+      <p class="card-text">Duración: {{item.timeToDeliver}} mins</p>
+      <app-timer [taskDuration]="item.timeToDeliver" *ngIf="item.open"></app-timer>
       <div class="btn-group d-none d-sm-block" role="group">
         <button type="button" class="btn btn-primary m-1 btn-sm" (click)="onGoToDetails(item)">Detalles</button>
         <button type="button" class="btn btn-secondary m-1 btn-sm" (click)="onGoToEdit(item)" >Editar</button>
