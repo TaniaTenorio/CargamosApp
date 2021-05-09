@@ -1,0 +1,34 @@
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4 class="text-center">Detalles de la Tarea</h4>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+             <li class="list-group-item">
+                Nombre: <h5>{{task.name}}</h5>
+             </li>
+             <li class="list-group-item">
+                Descripción: <h5>{{task.description}}</h5>
+             </li>
+             <li class="list-group-item">
+                Tiempo restante: <h5>{{task.timeToDeliver}} mins</h5>
+             </li>
+        </ul>
+    </div>
+    <div class="btn-group" role="group" *ngIf="!task.open">
+        <button type="button" class="btn btn-success m-1 btn-lg" (click)="onStart()">Comenzar Tarea</button>
+    </div>
+    <div class="btn-group" role="group" *ngIf="task.open">
+        <button type="button" class="btn btn-info m-1 btn-lg" (click)="onFinish()">Finalizar Tarea</button>
+    </div>
+    <div class="card-body mt-3">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-warning m-1 btn-sm" (click)="onGoToEdit()">Editar</button>
+            <button type="button" class="btn btn-danger m-1 btn-sm" (click)="onDelete()">Borrar</button>
+        </div>
+
+    </div>
+</div>
+<button type="button" class="btn btn-secondary mt-2" (click)="onGoBackToList()">Regresar a tareas pendientes</button>
+

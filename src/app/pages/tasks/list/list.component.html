@@ -1,0 +1,27 @@
+
+<h2 class="text-center mt-4">Tareas Pendientes</h2>
+<form [formGroup]="listForm" >
+  <label>Filtrar por duración: </label>
+  <select formControlName="duration" (change)="changeDuration($event)">
+    <option disabled>Select duration</option>
+    <option> </option>
+    <option *ngFor="let option of taskDuration">{{option}}</option>
+  </select>
+  <button type="button" class="btn btn-secondary btn-small" (click)="cleanFilter()">Clear</button>
+</form>
+<div class="container mt-3" *ngFor="let item of pendingTasks | async | filter:filterValue:'duration' | sort:['open']">
+  <div class="card">
+    <div class="card-body" [ngClass]="{'bg-success': item.open}">
+      <h4 class="card-title">{{item.name}}</h4>
+      <p class="card-text">{{item.description}}</p>
+      <p class="card-text">Creada en: {{item.creationDate | date:'medium'}}</p>
+      <p class="card-text">Duración: {{item.timeToDeliver}} mins</p>
+      <app-timer [taskDuration]="item.timeToDeliver" *ngIf="item.open"></app-timer>
+      <div class="btn-group d-none d-sm-block" role="group">
+        <button type="button" class="btn btn-primary m-1 btn-sm" (click)="onGoToDetails(item)">Detalles</button>
+        <button type="button" class="btn btn-secondary m-1 btn-sm" (click)="onGoToEdit(item)" >Editar</button>
+        <button type="button" class="btn btn-danger m-1 btn-sm" (click)="onDelete(item.id)">Borrar</button>   
+      </div>
+    </div>
+  </div>
+</div>
